@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
         //ˆÚ“®
         InputEvent.Instance.MoveEvent
-            .Subscribe(v => m_rb.velocity = v);
+            .Subscribe(v => m_rb.velocity = v * m_moveSpeed);
 
         //UŒ‚
         InputEvent.Instance.Fire1Event

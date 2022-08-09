@@ -39,9 +39,9 @@ public class InputEvent : MonoBehaviour
         m_jump.Value = Input.GetButtonDown("Jump");
         m_fire1.Value = Input.GetButtonDown("Fire1");
         m_fire2.Value = Input.GetButtonDown("Fire2");
-        m_move.Value = new Vector3(
+        m_move.SetValueAndForceNotify(new Vector3(
                 Input.GetAxis("Horizontal"),
                 0,
-                Input.GetAxis("Vertical"));
+                Input.GetAxis("Vertical")));
     }
 }

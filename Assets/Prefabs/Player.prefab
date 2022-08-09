@@ -130,8 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_life: 0
-  m_moveSpeed: 1
-  m_jumpPower: 1
+  m_moveSpeed: 5
+  m_jumpPower: 10
   m_rb: {fileID: 7949566619161704419}
 --- !u!1 &7949566619670132145
 GameObject:

@@ -15,7 +15,7 @@ public class FieldManager : MonoBehaviour
 
     public void Setup()
     {
-
+        PlayerSpawn();
     }
 
     public void PlayerSpawn()
