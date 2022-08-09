@@ -12,7 +12,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] int m_life;
     [SerializeField] float m_moveSpeed;
-    [SerializeField] InputEvent m_inputEvent;
+    [SerializeField] float m_jumpPower;
+    [SerializeField] Rigidbody m_rb;
 
     private void Start()
     {
@@ -21,9 +22,22 @@ public class Player : MonoBehaviour
 
     public void Setup()
     {
-        m_inputEvent.JumpEvent
+        //ƒWƒƒƒ“ƒv
+        InputEvent.Instance.JumpEvent
             .Where(b => b)
-            .ThrottleFirst(System.TimeSpan.FromSeconds(3))
-            .Subscribe(b => Debug.Log("‚¶‚á‚ñ‚Õ"));
+            .Subscribe(_ =>
+            {
+                m_rb.AddForce(Vector3.up * m_jumpPower, ForceMode.Impulse);
+            });
+
+        //ˆÚ“®
+        InputEvent.Instance.MoveEvent
+            .Subscribe(v => m_rb.velocity = v);
+
+        //UŒ‚
+        InputEvent.Instance.Fire1Event
+            .Where(b => b)
+            .ThrottleFirst(System.TimeSpan.FromSeconds(1))
+            .Subscribe(_ => Debug.Log("UŒ‚"));
     }
 }

@@ -19,6 +19,12 @@ public class InputEvent : MonoBehaviour
     public IObservable<bool> Fire1Event => m_fire1;
     public IObservable<bool> Fire2Event => m_fire2;
     public IObservable<Vector3> MoveEvent => m_move;
+    public static InputEvent Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {

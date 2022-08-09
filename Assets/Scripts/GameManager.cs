@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UniRx;
+using UniRx;
 //using Cysharp.Threading.Tasks;
 //using DG.Tweening;
 
@@ -10,9 +10,10 @@ using UnityEngine;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+
     private void Start()
     {
-        
+
     }
 
     private void Update()
