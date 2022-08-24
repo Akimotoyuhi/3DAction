@@ -11,6 +11,7 @@ using UniRx;
 public class CharactorBase : MonoBehaviour
 {
     protected Subject<Unit> m_dead = new Subject<Unit>();
+    /// <summary>©g‚ª€‚ñ‚¾–‚ğ’Ê’m‚·‚é</summary>
     public System.IObservable<Unit> Dead => m_dead;
 
     public virtual void Setup()
