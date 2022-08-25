@@ -11,7 +11,7 @@ using UniRx;
 public class FieldManager : MonoBehaviour
 {
     [SerializeField] Player m_playerPrefab;
-    [SerializeField] Transform m_playerSpawnPosition;
+    [SerializeField] Vector3 m_playerSpawnPosition;
 
     public void Setup()
     {
@@ -21,7 +21,7 @@ public class FieldManager : MonoBehaviour
     public void PlayerSpawn()
     {
         Player p = Instantiate(m_playerPrefab);
-        p.transform.position = m_playerSpawnPosition.position;
+        p.transform.position = m_playerSpawnPosition;
         p.Setup();
     }
 }

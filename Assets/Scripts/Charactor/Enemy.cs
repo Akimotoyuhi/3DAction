@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UniRx;
+using UniRx;
 //using Cysharp.Threading.Tasks;
 //using DG.Tweening;
 
 /// <summary>
-/// 敵の基底クラス
+/// 敵のクラス
 /// </summary>
-public class EnemyBase : CharactorBase
+public class Enemy : CharactorBase
 {
     public override void Setup()
     {

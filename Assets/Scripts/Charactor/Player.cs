@@ -19,6 +19,7 @@ public class Player : CharactorBase
     [SerializeField] float m_jumpPower;
     /// <summary>攻撃速度</summary>
     [SerializeField] float m_attackInterval;
+    [SerializeField] SkillTest m_skillTest;
     /// <summary>接地判定をするRayの長さ</summary>
     [SerializeField] float m_isGroundRayLength;
     /// <summary>重力</summary>
@@ -28,32 +29,19 @@ public class Player : CharactorBase
     public override void Setup()
     {
         //ジャンプ
-        InputEvent.Instance.JumpEvent
-            .Where(b => b/* && GroundCheck()*/)
-            .Subscribe(_ => Jump());
+        //InputEvent.Instance.JumpEvent
+        //    .Where(b => b/* && GroundCheck()*/)
+        //    .Subscribe(_ => Jump());
 
         //移動
-        InputEvent.Instance.MoveEvent
+        InputEventProvider.Instance.MoveEvent
             .Subscribe(v => Move(v));
 
         //攻撃
-        InputEvent.Instance.Fire1Event
+        InputEventProvider.Instance.Fire1Event
             .Where(b => b)
             .ThrottleFirst(System.TimeSpan.FromSeconds(m_attackInterval))
             .Subscribe(_ => Attack());
-
-        //this.UpdateAsObservable()
-        //    .Subscribe(v =>
-        //    {
-        //        if (Input.GetButtonDown("Jump") && GroundCheck())
-        //        {
-        //            Jump();
-        //        }
-        //        else
-        //        {
-
-        //        }
-        //    });
     }
 
     private void Jump()
@@ -74,6 +62,9 @@ public class Player : CharactorBase
     private void Attack()
     {
         Debug.Log("攻撃");
+        SkillTest s = Instantiate(m_skillTest, transform.position, transform.rotation);
+        s.Setup();
+        s.AddForce(transform.forward * 10);
     }
 
     private bool GroundCheck()
