@@ -64,7 +64,7 @@ public class Player : CharactorBase
         Debug.Log("çUåÇ");
         SkillTest s = Instantiate(m_skillTest, transform.position, transform.rotation);
         s.Setup();
-        s.AddForce(transform.forward * 10);
+        s.AddForce(transform.forward * 3);
     }
 
     private bool GroundCheck()
