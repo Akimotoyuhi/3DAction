@@ -21,13 +21,13 @@ public class DWPlayer : MonoBehaviour
         m_inputLeft
             .Where(x => x)
             .ThrottleFirst(System.TimeSpan.FromSeconds(m_leftCooltime))
-            .Subscribe(_ => Debug.Log("ç∂ì¸óÕ"));
+            .Subscribe(_ => Attack(Directions.Left));
 
         //âEì¸óÕÇÃãììÆä«óù
         m_inputRight
             .Where(x => x)
             .ThrottleFirst(System.TimeSpan.FromSeconds(m_rightCooltime))
-            .Subscribe(_ => Debug.Log("âEì¸óÕ"));
+            .Subscribe(_ => Attack(Directions.Right));
     }
 
     private void Update()
@@ -40,4 +40,18 @@ public class DWPlayer : MonoBehaviour
     {
 
     }
+
+    public void Attack(Directions directions)
+    {
+
+    }
+}
+
+/// <summary>
+/// ç∂âE
+/// </summary>
+public enum Directions
+{
+    Right,
+    Left,
 }
