@@ -7,28 +7,13 @@ using DG.Tweening;
 
 public class DWPlayer : MonoBehaviour
 {
-    [SerializeField] float m_leftCooltime;
-    [SerializeField] float m_rightCooltime;
     private int m_hp;
     private int m_power;
     private int m_defense;
+    private WeaponBase m_rightWeapon;
+    private WeaponBase m_leftWeapon;
     private ReactiveProperty<bool> m_inputLeft = new ReactiveProperty<bool>();
     private ReactiveProperty<bool> m_inputRight = new ReactiveProperty<bool>();
-
-    public void Start()
-    {
-        //ç∂ì¸óÕÇÃãììÆä«óù
-        m_inputLeft
-            .Where(x => x)
-            .ThrottleFirst(System.TimeSpan.FromSeconds(m_leftCooltime))
-            .Subscribe(_ => Attack(Directions.Left));
-
-        //âEì¸óÕÇÃãììÆä«óù
-        m_inputRight
-            .Where(x => x)
-            .ThrottleFirst(System.TimeSpan.FromSeconds(m_rightCooltime))
-            .Subscribe(_ => Attack(Directions.Right));
-    }
 
     private void Update()
     {
@@ -36,14 +21,40 @@ public class DWPlayer : MonoBehaviour
         m_inputRight.Value = Input.GetButton("Fire2");
     }
 
-    public void Setup()
+    public void Setup(WeaponBase rightWaapon, WeaponBase leftWeapon)
     {
+        m_rightWeapon = rightWaapon;
+        //âEì¸óÕÇÃãììÆä«óù
+        m_inputRight
+            .Where(x => x)
+            .ThrottleFirst(System.TimeSpan.FromSeconds(m_rightWeapon.UseDurasion))
+            .Subscribe(_ => Attack(Directions.Right));
 
+        m_leftWeapon = leftWeapon;
+        //ç∂ì¸óÕÇÃãììÆä«óù
+        m_inputLeft
+            .Where(x => x)
+            .ThrottleFirst(System.TimeSpan.FromSeconds(m_leftWeapon.UseDurasion))
+            .Subscribe(_ => Attack(Directions.Left));
     }
 
+    /// <summary>
+    /// çUåÇ
+    /// </summary>
+    /// <param name="directions">çUåÇÇ∑ÇÈòr</param>
     public void Attack(Directions directions)
     {
-
+        switch (directions)
+        {
+            case Directions.Right:
+                m_rightWeapon.Attack();
+                break;
+            case Directions.Left:
+                m_leftWeapon.Attack();
+                break;
+            default:
+                break;
+        }
     }
 }
 

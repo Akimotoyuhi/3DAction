@@ -12,6 +12,9 @@ public abstract class WeaponBase : MonoBehaviour
 {
     [SerializeField] int m_baseDamage;
     [SerializeField] float m_baseSpeed;
+    [SerializeField] float m_useDurasion;
+    /// <summary>égópä‘äu</summary>
+    public float UseDurasion => m_useDurasion;
 
     public virtual void Setup()
     {

@@ -7,6 +7,7 @@ using DG.Tweening;
 
 public class Sword : WeaponBase
 {
+    
 
     public override void Setup()
     {
@@ -16,5 +17,14 @@ public class Sword : WeaponBase
     public override void Attack()
     {
         base.Attack();
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+
+        }
     }
 }
